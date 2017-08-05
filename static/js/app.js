@@ -50,17 +50,17 @@ $(".log-in-btn").on("click", function(){
     $.ajax({
         type: 'POST',
         url: 'http://52.198.142.127/api/users/',
-        body: {
+        data: {
             username: username,
             first_name: firstName
-        },
-        processData: false,
-        contentType: "application/x-www-form-urlencoded"
+        }
     }).done(function(data) {
         var token = "Token " + data.token; 
         localStorage.setItem("token", token);
         $(".user").removeClass("not-user");
         $(".user").addClass("is-user");
+        $(".form-group").addClass("is-user");
+        $(".username").text(username);
         $.ajax({
             type: 'GET',
             url: 'http://52.198.142.127/api/course/',
@@ -76,7 +76,7 @@ $(".log-in-btn").on("click", function(){
             for(var i = 0; i < data.length; i++) {
                 timetableItem = document.createElement("button");
                 data[i].day;
-                switch(data[i].day) {
+                switch(data[i].day - 1) {
                     case 0:
                         day = "mon";
                         dayKo = "월요일";

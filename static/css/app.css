@@ -1,16 +1,22 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 .container-fluid{
     margin-top: 15px;
 }
 table, th, td {
-    border: 1px solid black;
+    border: .5px solid #e4e4e4;
 }
 .table{
     margin: 0 !important;
+    background-color: #f7f7f7;
+    font-family: 'Nanum Pen Script', cursive;
 }
 th{
-    border-bottom: 1px solid black !important;
+    border-bottom: 0.5px solid #e4e4e4 !important;
     text-align: center;
     vertical-align: middle !important;
+}
+label{
+    text-align: left;
 }
 .time{
     width: 10%;
@@ -24,15 +30,20 @@ th{
 .wrapper{
     padding: 20px;
 }
+.wrapper > *{
+    margin-bottom: 5px;
+}
 .tbl-head{
     height: 37px;
 }
 .timetable-item{
     position: absolute;
-    width: 18%;
+    width: calc(18% - 0.5px);
     border: 0;
+    padding: 6px;
     color: #fff;
-    
+    outline: 0;
+    text-align: left;
 }
 .tbl-wrap{
     padding: 0;
