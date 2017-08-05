@@ -203,16 +203,12 @@ $(document).ready(function() {
                 courseName.push(data[i].courseName);
             }
         }
-        
-        console.log(courseName);
-        
+/**
+ * table item background color
+ */
         for (var j = 0; j < courseName.length; j++) {
             var backgroundColor = getRandomColor();
             for (var i = 0; i < $(".timetable-item").length; i++) {
-                
-                console.log($(".timetable-item")[i].dataset.courseName);
-                console.log(courseName[j]);
-                
                 if ($(".timetable-item")[i].dataset.courseName === courseName[j]) {
                     $(".timetable-item")[i].style.backgroundColor = backgroundColor;
                 }
@@ -221,15 +217,21 @@ $(document).ready(function() {
     })
     
     $(".timetable-item").on("click", function(){
+        
+        console.log(1);
+        
         var $this = $(this);
+        
+        console.log($this);
+        
         $(".main-controls > h1").html(
             $this.data("courseName") + "<br>" +
             $this.data("dayKo") + "<br>" + 
             $this.data("startTime") + " ~ " +
             $this.data("endTime") + "교시"
-        )
+        );
         
-        
+        console.log(2);
         
         $(".main-controls").show();
     })
