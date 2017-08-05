@@ -143,142 +143,77 @@ function getRandomColor() {
 }
 
 $(document).ready(function() {
-    /*
+    var courseName = [];
     $.ajax({
         type: 'GET',
         url: 'http://52.198.142.127/api/course/',
         processData: false,
         contentType: false
     }).done(function(data) {
-        console.log(data);
-        for(let i = 0; i < data.length; i++) {
-            timetableItem = document.createElement("div");
-            var day = ""
+        var timetableItem = "";
+        var day = "";
+        var dayKo = "";
+        for(var i = 0; i < data.length; i++) {
+            timetableItem = document.createElement("button");
             data[i].day;
             switch(data[i].day) {
                 case 0:
                     day = "mon";
+                    dayKo = "월요일";
                     break;
                 case 1:
                     day = "tue";
+                    dayKo = "화요일";
                     break;
                 case 2:
                     day = "wed";
+                    dayKo = "수요일";
                     break;
                 case 3:
                     day = "thu";
+                    dayKo = "목요일";
                     break;
                 case 4:
                     day = "fri";
+                    dayKo = "금요일";
                     break;
             }
-            timetableItem.addClass(day + "-" + data[i].startTime + "-s");
-            timetableItem.addClass(day + "-" + data[i].endTime + "-e");
+            timetableItem.className += day + "-" + data[i].startTime + "-s ";
+            timetableItem.className += day + "-" + data[i].endTime + "-e ";
+            timetableItem.className += "timetable-item ";
+            
+            timetableItem.dataset.id = data[i].id;
+            timetableItem.dataset.courseName = data[i].courseName;
+            timetableItem.dataset.dayKo = dayKo;
+            timetableItem.dataset.startTime = data[i].startTime;
+            timetableItem.dataset.endTime = data[i].endTime;
+            
+            var courseNameElement = document.createElement("p");
+            var courseNametextNode = document.createTextNode(data[i].courseName);
+            courseNameElement.appendChild(courseNametextNode);
+            
+            var profNameElement = document.createElement("p");
+            var profNameTextNode = document.createTextNode(data[i].profName);
+            profNameElement.appendChild(profNameTextNode);
+            
+            timetableItem.appendChild(courseNameElement);
+            timetableItem.appendChild(profNameElement);
+            $('.tbl-wrap').append(timetableItem);
+            
+            if (courseName.indexOf(data[i].courseName) < 0) {
+                courseName.push(data[i].courseName);
+            }
         }
     });
-    */
-    var timetableItem = "";
-    let data = [
-        {
-            "id": 1,
-            "year": 17,
-            "term": "2R",
-            "courseCode": "KECE109",
-            "courseName": "공학수학",
-            "day": 0,
-            "startTime": 1,
-            "endTime": 1,
-            "buildingName": "하나스퀘어",
-            "roomType": "강의실",
-            "roomName": "B101",
-            "profName": "허능호",
-            "created": "2017-08-05T11:29:58.541099Z",
-            "user": 1
-        },
-        {
-            "id": 2,
-            "year": 17,
-            "term": "2R",
-            "courseCode": "KECE109",
-            "courseName": "공학수학",
-            "day": 2,
-            "startTime": 1,
-            "endTime": 1,
-            "buildingName": "하나스퀘어",
-            "roomType": "강의실",
-            "roomName": "B101",
-            "profName": "허능호",
-            "created": "2017-08-05T12:30:58.102487Z",
-            "user": 1
-        },
-        {
-            "id": 3,
-            "year": 17,
-            "term": "2R",
-            "courseCode": "BUSS205",
-            "courseName": "마케팅원론",
-            "day": 0,
-            "startTime": 3,
-            "endTime": 4,
-            "buildingName": "L-P",
-            "roomType": "강의실",
-            "roomName": "309",
-            "profName": "이두희",
-            "created": "2017-08-05T12:33:04.266532Z",
-            "user": 1
+    for (var j = 0; j < courseName.length; j++) {
+        var backgroundColor = getRandomColor();
+        for (var i = 0; i < $(".timetable-item"); i++) {
+            if ($(".timetable-item")[i].data("courseName") === courseName[j]) {
+                $(".timetable-item")[i].css("background-color", backgroundColor);
+            }
         }
-    ]
-    console.log(data);
-    for(let i = 0; i < data.length; i++) {
-        timetableItem = document.createElement("button");
-        var day = "";
-        var dayKo = "";
-        data[i].day;
-        switch(data[i].day) {
-            case 0:
-                day = "mon";
-                dayKo = "월요일";
-                break;
-            case 1:
-                day = "tue";
-                dayKo = "화요일";
-                break;
-            case 2:
-                day = "wed";
-                dayKo = "수요일";
-                break;
-            case 3:
-                day = "thu";
-                dayKo = "목요일";
-                break;
-            case 4:
-                day = "fri";
-                dayKo = "금요일";
-                break;
-        }
-        timetableItem.className += day + "-" + data[i].startTime + "-s ";
-        timetableItem.className += day + "-" + data[i].endTime + "-e ";
-        timetableItem.className += "timetable-item ";
-        
-        timetableItem.style.background = getRandomColor();
-        
-        timetableItem.dataset.id = data[i].id;
-        timetableItem.dataset.courseName = data[i].courseName;
-        timetableItem.dataset.dayKo = dayKo;
-        timetableItem.dataset.startTime = data[i].startTime;
-        timetableItem.dataset.endTime = data[i].endTime;
-        var courseNameElement = document.createElement("p");
-        var courseNametextNode = document.createTextNode(data[i].courseName);
-        courseNameElement.appendChild(courseNametextNode);
-        
-        var profNameElement = document.createElement("p");
-        var profNameTextNode = document.createTextNode(data[i].profName);
-        profNameElement.appendChild(profNameTextNode);
-        
-        timetableItem.appendChild(courseNameElement);
-        timetableItem.appendChild(profNameElement);
-        $('.tbl-wrap').append(timetableItem);
     }
+    
     $(".timetable-item").on("click", function(){
         var $this = $(this);
         $(".main-controls > h1").html(
