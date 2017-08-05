@@ -141,7 +141,7 @@ $(document).ready(function() {
         url: 'http://52.198.142.127/api/course/',
         headers: {
             Authorization: "Token 2864a9d435b07f43b5c56934dd19edf5552ef3ba"
-        }
+        },
         processData: false,
         contentType: false
     }).done(function(data) {
@@ -256,10 +256,10 @@ $(".log-in-btn").on("click", function(){
     $.ajax({
         type: 'POST',
         url: 'http://52.198.142.127/api/users/',
-        {
+        data: {
             username: username,
             first_name: firstName
-        }
+        },
         processData: false,
         contentType: "application/x-www-form-urlencoded"
     }).done(function(data) {
