@@ -182,7 +182,6 @@ $(document).ready(function() {
             timetableItem.className += day + "-" + data[i].endTime + "-e ";
             timetableItem.className += "timetable-item ";
             
-            timetableItem.dataset.id = data[i].id;
             timetableItem.dataset.courseName = data[i].courseName;
             timetableItem.dataset.dayKo = dayKo;
             timetableItem.dataset.startTime = data[i].startTime;
@@ -204,19 +203,22 @@ $(document).ready(function() {
                 courseName.push(data[i].courseName);
             }
         }
-    });
-    for (var j = 0; j < courseName.length; j++) {
-        var backgroundColor = getRandomColor();
-        for (var i = 0; i < $(".timetable-item"); i++) {
-            
-            console.log($(".timetable-item")[i].data("courseName"));
-            console.log(courseName[j]);
-            
-            if ($(".timetable-item")[i].data("courseName") === courseName[j]) {
-                $(".timetable-item")[i].css("background-color", backgroundColor);
+        
+        console.log(courseName);
+        
+        for (var j = 0; j < courseName.length; j++) {
+            var backgroundColor = getRandomColor();
+            for (var i = 0; i < $(".timetable-item").length; i++) {
+                
+                console.log($(".timetable-item")[i].data("courseName"));
+                console.log(courseName[j]);
+                
+                if ($(".timetable-item")[i].data("courseName") === courseName[j]) {
+                    $(".timetable-item")[i].css("background-color", backgroundColor);
+                }
             }
         }
-    }
+    })
     
     $(".timetable-item").on("click", function(){
         var $this = $(this);
