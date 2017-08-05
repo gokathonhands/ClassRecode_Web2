@@ -17,6 +17,7 @@ th{
     vertical-align: middle !important;
 }
 label{
+    float: left;
     text-align: left;
 }
 .time{
@@ -61,4 +62,7 @@ label{
 }
 .is-user{
     display: block;
+}
+.username{
+    font-weight: bold;
 }

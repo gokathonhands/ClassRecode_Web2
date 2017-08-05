@@ -59,7 +59,7 @@ $(".log-in-btn").on("click", function(){
         localStorage.setItem("token", token);
         $(".user").removeClass("not-user");
         $(".user").addClass("is-user");
-        $(".form-group").addClass("is-user");
+        $(".form-group").addClass("not-user");
         $(".username").text(username);
         $.ajax({
             type: 'GET',
