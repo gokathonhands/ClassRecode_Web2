@@ -210,11 +210,11 @@ $(document).ready(function() {
             var backgroundColor = getRandomColor();
             for (var i = 0; i < $(".timetable-item").length; i++) {
                 
-                console.log($(".timetable-item")[i].data("courseName"));
+                console.log($(".timetable-item")[i].dataset.courseName);
                 console.log(courseName[j]);
                 
-                if ($(".timetable-item")[i].data("courseName") === courseName[j]) {
-                    $(".timetable-item")[i].css("background-color", backgroundColor);
+                if ($(".timetable-item")[i].dataset.courseName === courseName[j]) {
+                    $(".timetable-item")[i].style.backgroundColor = backgroundColor;
                 }
             }
         }
