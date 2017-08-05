@@ -50,7 +50,7 @@ $(".log-in-btn").on("click", function(){
     $.ajax({
         type: 'POST',
         url: 'http://52.198.142.127/api/users/',
-        data: {
+        body: {
             username: username,
             first_name: firstName
         },
