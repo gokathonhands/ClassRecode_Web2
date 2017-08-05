@@ -45,8 +45,8 @@ $(".timetable-item").on("click", function(){
  * log-in
  */
 $(".log-in-btn").on("click", function(){
-    username = $("#username").val();
-    firstName = $("#first_name").val();
+    var username = $("#username").val();
+    var firstName = $("#first_name").val();
     $.ajax({
         type: 'POST',
         url: 'http://52.198.142.127/api/users/',
