@@ -134,19 +134,14 @@ if (navigator.mediaDevices.getUserMedia) {
     console.log('getUserMedia not supported on your browser!');
 }
 
-/**
- *  get random color
- */
-function getRandomColor() {
-  var hex = Math.floor(Math.random() * 0xFFFFFF);
-  return "#" + ("000000" + hex.toString(16)).substr(-6);
-}
-
 $(document).ready(function() {
     var courseName = [];
     $.ajax({
         type: 'GET',
         url: 'http://52.198.142.127/api/course/',
+        headers: {
+            Authorization: "Token 2864a9d435b07f43b5c56934dd19edf5552ef3ba"
+        }
         processData: false,
         contentType: false
     }).done(function(data) {
@@ -206,33 +201,71 @@ $(document).ready(function() {
 /**
  * table item background color
  */
+        var backgroundColor = [
+            "#f08676",
+            "#9d86e0",
+            "#ebc469",
+            "#75ca86",
+            "#a6c96f",
+            "#d397ed",
+            "#78a5e8",
+            "#fbab66",
+            "#bf7000",
+            "#1d447c",
+            "#216900",
+            "#d5b400"
+        ]
         for (var j = 0; j < courseName.length; j++) {
-            var backgroundColor = getRandomColor();
             for (var i = 0; i < $(".timetable-item").length; i++) {
                 if ($(".timetable-item")[i].dataset.courseName === courseName[j]) {
-                    $(".timetable-item")[i].style.backgroundColor = backgroundColor;
+                    $(".timetable-item")[i].style.backgroundColor = backgroundColor[j];
                 }
             }
         }
     })
-    
-    $(".timetable-item").on("click", function(){
-        
-        console.log(1);
-        
-        var $this = $(this);
-        
-        console.log($this);
-        
-        $(".main-controls > h1").html(
-            $this.data("courseName") + "<br>" +
-            $this.data("dayKo") + "<br>" + 
-            $this.data("startTime") + " ~ " +
-            $this.data("endTime") + "교시"
-        );
-        
-        console.log(2);
-        
-        $(".main-controls").show();
-    })
 });
+
+$(".timetable-item").on("click", function(){
+    var $this = $(this);
+    $(".main-controls > h1").html(
+        $this.data("courseName") + "<br>" +
+        $this.data("dayKo") + "<br>" + 
+        $this.data("startTime") + " ~ " +
+        $this.data("endTime") + "교시"
+    );
+    $(".main-controls").show();
+    /*
+    $.ajax({
+        type: 'GET',
+        url: 'http://52.198.142.127/api/course/',
+        headers: {
+            Authorization: localStorage.getItem('token')
+        }
+    }).done(function(){
+        
+    })
+    */
+})
+
+/**
+ * log-in
+ */
+$(".log-in-btn").on("click", function(){
+    username = $("#username").val();
+    firstName = $("#first_name").val();
+    $.ajax({
+        type: 'POST',
+        url: 'http://52.198.142.127/api/users/',
+        {
+            username: username,
+            first_name: firstName
+        }
+        processData: false,
+        contentType: "application/x-www-form-urlencoded"
+    }).done(function(data) {
+        var token = "Token " + data.token; 
+        localStorage.setItem("token", token);
+        $(".user").removeClass("not-user");
+        $(".user").addClass("is-user");
+    })
+})

@@ -31,6 +31,7 @@ th{
     position: absolute;
     width: 18%;
     border: 0;
+    color: #fff;
     
 }
 .tbl-wrap{
@@ -42,4 +43,10 @@ th{
 }
 .main-controls > h1{
     font-size: 20px;
+}
+.not-user{
+    display: none;
+}
+.is-user{
+    display: block;
 }
