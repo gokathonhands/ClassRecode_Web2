@@ -4,6 +4,7 @@
 }
 table, th, td {
     border: .5px solid #e4e4e4;
+    text-overflow: ellipsis;
 }
 .table{
     margin: 0 !important;
