@@ -28,7 +28,7 @@ $(".timetable-item").on("click", function(){
         $this.data("endTime") + "교시"
     );
     $(".main-controls").show();
-    $("audio").show();
+    $(".rec").show();
     /*
     $.ajax({
         type: 'GET',
