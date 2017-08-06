@@ -66,3 +66,7 @@ label{
 .username{
     font-weight: bold;
 }
+audio{
+    display: none;
+    widht: 100%;
+}
