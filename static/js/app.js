@@ -13,34 +13,7 @@ var backgroundColor = [
     "#d5b400"
 ];
 var courseName = [];
-$(".timetable-item").on("click", function(){
-    
-    console.log(1);
-    
-    var $this = $(this);
-    
-    console.log($this);
-    
-    $(".main-controls > h1").html(
-        $this.data("courseName") + "<br>" +
-        $this.data("dayKo") + "<br>" + 
-        $this.data("startTime") + " ~ " +
-        $this.data("endTime") + "교시"
-    );
-    $(".main-controls").show();
-    $(".rec").show();
-    /*
-    $.ajax({
-        type: 'GET',
-        url: 'http://52.198.142.127/api/course/',
-        headers: {
-            Authorization: localStorage.getItem('token')
-        }
-    }).done(function(){
-        
-    })
-    */
-})
+
 
 /**
  * log-in
@@ -134,6 +107,36 @@ $(".log-in-btn").on("click", function(){
                     }
                 }
             }
+            
+            $(".timetable-item").on("click", function(){
+                
+                console.log(1);
+                
+                var $this = $(this);
+                
+                console.log($this);
+                
+                $(".main-controls > h1").html(
+                    $this.data("courseName") + "<br>" +
+                    $this.data("dayKo") + "<br>" + 
+                    $this.data("startTime") + " ~ " +
+                    $this.data("endTime") + "교시"
+                );
+                $(".main-controls").show();
+                $(".rec").show();
+                /*
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://52.198.142.127/api/course/',
+                    headers: {
+                        Authorization: localStorage.getItem('token')
+                    }
+                }).done(function(){
+                    
+                })
+                */
+            })
+            
         })
     })
 })
